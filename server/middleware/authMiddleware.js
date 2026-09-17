@@ -1,9 +1,20 @@
 import jwt from 'jsonwebtoken';
 import { Admin } from '../config/db.js';
 
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    throw new Error('JWT_SECRET is not configured.');
+  }
+
+  return secret;
+};
+
 export const requireAdminAuth = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
+
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({
         success: false,
@@ -12,12 +23,16 @@ export const requireAdminAuth = async (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const secret = process.env.JWT_SECRET || 'nexios_super_secret_jwt_key_2026_built_for_whats_next';
 
     let decoded;
+
     try {
-      decoded = jwt.verify(token, secret);
+      decoded = jwt.verify(token, getJwtSecret());
     } catch (err) {
+      if (err.message === 'JWT_SECRET is not configured.') {
+        throw err;
+      }
+
       return res.status(401).json({
         success: false,
         message: 'Invalid or expired session token. Please log in again.'
@@ -25,6 +40,7 @@ export const requireAdminAuth = async (req, res, next) => {
     }
 
     const admin = await Admin.findById(decoded.id);
+
     if (!admin) {
       return res.status(401).json({
         success: false,
@@ -39,12 +55,13 @@ export const requireAdminAuth = async (req, res, next) => {
       role: admin.role
     };
 
-    next();
+    return next();
   } catch (err) {
     console.error('[AuthMiddleware] Verification error:', err);
+
     return res.status(500).json({
       success: false,
       message: 'Internal authentication server error.'
     });
   }
-};
+};  
