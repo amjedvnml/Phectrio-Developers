@@ -1,44 +1,56 @@
 import axios from 'axios';
 
+const apiBaseUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '');
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: apiBaseUrl,
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
-// Request interceptor to attach JWT token if present
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('nexios_admin_token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
+// Attach JWT token if present
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('nexios_admin_token');
 
-// Response interceptor to handle session expiration
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Handle expired/invalid admin sessions
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      if (window.location.pathname.startsWith('/admin') && window.location.pathname !== '/admin/login') {
+    if (error.response?.status === 401) {
+      const isProtectedAdminRoute =
+        window.location.pathname.startsWith('/admin') &&
+        window.location.pathname !== '/admin/login';
+
+      if (isProtectedAdminRoute) {
         localStorage.removeItem('nexios_admin_token');
         localStorage.removeItem('nexios_admin_user');
+
         window.location.href = '/admin/login?expired=true';
       }
     }
+
     return Promise.reject(error);
   }
 );
 
-// API Service Methods
+// Inquiry
 export const submitInquiry = async (data) => {
   const res = await api.post('/inquiries', data);
   return res.data;
 };
 
+// Authentication
 export const adminLogin = async (credentials) => {
   const res = await api.post('/auth/login', credentials);
   return res.data;
@@ -49,6 +61,7 @@ export const verifyAdminSession = async () => {
   return res.data;
 };
 
+// Admin
 export const getAdminStats = async () => {
   const res = await api.get('/admin/stats');
   return res.data;
@@ -69,6 +82,7 @@ export const deleteInquiry = async (id) => {
   return res.data;
 };
 
+// Projects
 export const getProjects = async (params = {}) => {
   const res = await api.get('/projects', { params });
   return res.data;

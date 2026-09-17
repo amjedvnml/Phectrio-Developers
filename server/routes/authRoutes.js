@@ -6,7 +6,20 @@ import { requireAdminAuth } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    throw new Error('JWT_SECRET is not configured.');
+  }
+
+  return secret;
+};
+
+// --------------------------------------
 // POST /api/auth/login
+// --------------------------------------
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -18,32 +31,41 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    const cleanIdentifier = email.trim().toLowerCase();
-    
-    // Find by email or username
-    let admin = await Admin.findOne({ email: cleanIdentifier });
+    const cleanIdentifier = email
+      .trim()
+      .toLowerCase();
+
+    // Search using email
+    let admin = await Admin.findOne({
+      email: cleanIdentifier
+    });
+
+    // Search using username
     if (!admin) {
       admin = await Admin.findOne({
-        username: cleanIdentifier 
+          username: cleanIdentifier 
         });
     }
 
     if (!admin) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials. Please verify your email and password.'
+        message: 'Invalid credentials.'
       });
     }
 
-    const isMatch = bcrypt.compareSync(password, admin.passwordHash);
+    const isMatch = bcrypt.compareSync(
+      password,
+      admin.passwordHash
+    );
+
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials. Incorrect password.'
+        message: 'Invalid credentials.'
       });
     }
 
-    const secret = process.env.JWT_SECRET || 'nexios_super_secret_jwt_key_2026_built_for_whats_next';
     const payload = {
       id: admin._id || admin.id,
       email: admin.email,
@@ -51,7 +73,13 @@ router.post('/login', async (req, res) => {
       role: admin.role || 'superadmin'
     };
 
-    const token = jwt.sign(payload, secret, { expiresIn: '7d' });
+    const token = jwt.sign(
+      payload,
+      getJwtSecret(),
+      {
+        expiresIn: '7d'
+      }
+    );
 
     return res.status(200).json({
       success: true,
@@ -60,20 +88,32 @@ router.post('/login', async (req, res) => {
       user: payload
     });
   } catch (err) {
-    console.error('[AuthRoutes] Login error:', err);
+    console.error(
+      '[AuthRoutes] Login error:',
+      err
+    );
+
     return res.status(500).json({
       success: false,
-      message: 'Internal server error during authentication.'
+      message:
+        'Internal server error during authentication.'
     });
   }
 });
 
-// GET /api/auth/me (Protected check)
-router.get('/me', requireAdminAuth, async (req, res) => {
-  return res.status(200).json({
-    success: true,
-    user: req.admin
-  });
-});
+// --------------------------------------
+// GET /api/auth/me
+// --------------------------------------
 
-export default router;
+router.get(
+  '/me',
+  requireAdminAuth,
+  async (req, res) => {
+    return res.status(200).json({
+      success: true,
+      user: req.admin
+    });
+  }
+);
+
+  export default router;
