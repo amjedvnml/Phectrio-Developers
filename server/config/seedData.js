@@ -13,7 +13,6 @@ export const getInitialSeedData = (bcrypt) => {
   const admin = adminPassword
     ? {
         id: "admin_root_01",
-        _id: "admin_root_01",
 
         username:
           process.env.ADMIN_USERNAME ||
@@ -43,9 +42,9 @@ export const getInitialSeedData = (bcrypt) => {
   const demoInquiries = [
     {
       id: "inq_001",
-      _id: "inq_001",
 
-      name: "Sarah Jenkins",
+      name:
+        "Sarah Jenkins",
 
       email:
         "sarah@hyperion.ai",
@@ -71,7 +70,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "inq_002",
-      _id: "inq_002",
 
       name:
         "Marcus Vance",
@@ -100,7 +98,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "inq_003",
-      _id: "inq_003",
 
       name:
         "Elena Rostova",
@@ -129,7 +126,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "inq_004",
-      _id: "inq_004",
 
       name:
         "David Zhang",
@@ -158,7 +154,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "inq_005",
-      _id: "inq_005",
 
       name:
         "Chloe Martin",
@@ -193,7 +188,6 @@ export const getInitialSeedData = (bcrypt) => {
   const demoProjects = [
     {
       id: "proj_001",
-      _id: "proj_001",
 
       title:
         "Hyperion AI Studio",
@@ -229,7 +223,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "proj_002",
-      _id: "proj_002",
 
       title:
         "Vance Capital Terminal",
@@ -265,7 +258,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "proj_003",
-      _id: "proj_003",
 
       title:
         "Aether Spatial System",
@@ -301,7 +293,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "proj_004",
-      _id: "proj_004",
 
       title:
         "Chronos Cloud Engine",
@@ -337,7 +328,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "proj_005",
-      _id: "proj_005",
 
       title:
         "Pulse Health Wearable",
@@ -373,7 +363,6 @@ export const getInitialSeedData = (bcrypt) => {
 
     {
       id: "proj_006",
-      _id: "proj_006",
 
       title:
         "Krypton Multi-Chain UX",

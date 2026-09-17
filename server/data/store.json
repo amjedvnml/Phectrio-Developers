@@ -4,22 +4,11 @@
     "_id": "admin_root_01",
     "username": "nexiosadmin",
     "email": "admin@nexios.dev",
-    "passwordHash": "$2a$10$Mv5avecsYPHw323bOzNx3.ovP6oNCmeimcP9E70Ludb.ssrt95Hpq",
+    "passwordHash": "$2a$10$WjhXnGgCKmHlhsyBz7kcGepS.Mvcp5AP8O7mpWQZyOakCITcP7T2K",
     "role": "superadmin",
-    "createdAt": "2026-09-16T17:30:43.113Z"
+    "createdAt": "2026-09-17T01:13:52.993Z"
   },
   "inquiries": [
-    {
-      "_id": "inq_1789580053464_dsnu7",
-      "id": "inq_1789580053464_dsnu7",
-      "name": "Jordan Blake",
-      "email": "jordan@spatialtech.io",
-      "service": "Web Development",
-      "budget": "-",
-      "message": "We are seeking a 3D WebGL interactive portfolio platform with sub-second response times.",
-      "status": "In Progress",
-      "createdAt": "2026-09-16T17:34:13.464Z"
-    },
     {
       "id": "inq_001",
       "_id": "inq_001",
@@ -29,7 +18,7 @@
       "budget": "$25k-$50k",
       "message": "We need a flagship 3D WebGL web platform for our generative AI developer tooling suite with interactive canvas controls.",
       "status": "New",
-      "createdAt": "2026-09-16T14:30:43.114Z"
+      "createdAt": "2026-09-16T22:13:52.993Z"
     },
     {
       "id": "inq_002",
@@ -40,7 +29,7 @@
       "budget": "$50k+",
       "message": "Looking for an ultra-secure, sub-50ms trading and portfolio management app for iOS and Android with live WebSockets.",
       "status": "In Progress",
-      "createdAt": "2026-09-15T17:30:43.114Z"
+      "createdAt": "2026-09-16T01:13:52.993Z"
     },
     {
       "id": "inq_003",
@@ -51,7 +40,7 @@
       "budget": "$10k-$25k",
       "message": "Full spatial UI/UX design system overhaul for our collaborative video production web app. Needs luxury dark aesthetic.",
       "status": "Completed",
-      "createdAt": "2026-09-14T17:30:43.114Z"
+      "createdAt": "2026-09-15T01:13:52.993Z"
     },
     {
       "id": "inq_004",
@@ -62,7 +51,7 @@
       "budget": "$10k-$25k",
       "message": "Interactive marketing website with micro-interactions, dark mode aesthetics, dynamic portfolio showcase, and high conversion.",
       "status": "New",
-      "createdAt": "2026-09-13T17:30:43.114Z"
+      "createdAt": "2026-09-14T01:13:52.993Z"
     },
     {
       "id": "inq_005",
@@ -73,7 +62,7 @@
       "budget": "$25k-$50k",
       "message": "React Native mobile banking application with biometric auth, smooth cards, and real-time transaction feeds.",
       "status": "Archived",
-      "createdAt": "2026-09-12T17:30:43.114Z"
+      "createdAt": "2026-09-13T01:13:52.993Z"
     }
   ],
   "projects": [
@@ -92,7 +81,7 @@
       ],
       "featured": true,
       "metrics": "120k+ Daily Users",
-      "createdAt": "2026-09-08T09:30:43.114Z"
+      "createdAt": "2026-09-08T17:13:52.993Z"
     },
     {
       "id": "proj_002",
@@ -109,7 +98,7 @@
       ],
       "featured": true,
       "metrics": "$40M+ Weekly Volume",
-      "createdAt": "2026-09-06T07:30:43.114Z"
+      "createdAt": "2026-09-06T15:13:52.993Z"
     },
     {
       "id": "proj_003",
@@ -126,7 +115,7 @@
       ],
       "featured": true,
       "metrics": "400+ Component Tokens",
-      "createdAt": "2026-09-04T05:30:43.114Z"
+      "createdAt": "2026-09-04T13:13:52.993Z"
     },
     {
       "id": "proj_004",
@@ -143,7 +132,7 @@
       ],
       "featured": false,
       "metrics": "99.999% SLA Uptime",
-      "createdAt": "2026-09-02T03:30:43.114Z"
+      "createdAt": "2026-09-02T11:13:52.993Z"
     },
     {
       "id": "proj_005",
@@ -160,7 +149,7 @@
       ],
       "featured": false,
       "metrics": "50k+ Active Syncs",
-      "createdAt": "2026-08-31T01:30:43.114Z"
+      "createdAt": "2026-08-31T09:13:52.993Z"
     },
     {
       "id": "proj_006",
@@ -177,7 +166,7 @@
       ],
       "featured": false,
       "metrics": "4.9/5 User Rating",
-      "createdAt": "2026-08-28T23:30:43.114Z"
+      "createdAt": "2026-08-29T07:13:52.993Z"
     }
   ]
 }
