@@ -23,7 +23,9 @@ router.post('/login', async (req, res) => {
     // Find by email or username
     let admin = await Admin.findOne({ email: cleanIdentifier });
     if (!admin) {
-      admin = await Admin.findOne({ username: cleanIdentifier });
+      admin = await Admin.findOne({
+        username: cleanIdentifier 
+        });
     }
 
     if (!admin) {
