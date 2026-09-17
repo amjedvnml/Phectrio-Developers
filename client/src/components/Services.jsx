@@ -38,7 +38,6 @@ const servicesData = [
       'GraphQL'
     ]
   },
-
   {
     id: 'app-dev',
     title: 'App Development',
@@ -64,7 +63,6 @@ const servicesData = [
       'Firebase'
     ]
   },
-
   {
     id: 'ui-ux',
     title: 'UI/UX Design',
@@ -96,26 +94,17 @@ export const Services = ({ onSelectService }) => {
   const cardsContainerRef = useRef(null);
   const cardRefs = useRef([]);
 
-  // ======================================
-  // 3D Card Hover
-  // ======================================
-
   const handleCardMouseMove = (e, cardEl) => {
     if (!cardEl) return;
 
     const rect = cardEl.getBoundingClientRect();
-
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX =
-      ((y - centerY) / centerY) * -8;
-
-    const rotateY =
-      ((x - centerX) / centerX) * 8;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
 
     gsap.to(cardEl, {
       rotateX,
@@ -133,70 +122,51 @@ export const Services = ({ onSelectService }) => {
     gsap.to(cardEl, {
       rotateX: 0,
       rotateY: 0,
-      duration: 0.5,
+      duration: 0.45,
       ease: 'power2.out',
       overwrite: 'auto'
     });
   };
 
-  // ======================================
-  // GSAP Entrance Animations
-  // ======================================
-
   useEffect(() => {
-    if (
-      !sectionRef.current ||
-      !cardsContainerRef.current
-    ) {
-      return;
-    }
+    if (!sectionRef.current || !cardsContainerRef.current) return;
 
-    const reducedMotion =
-      window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
-      ).matches;
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
     const ctx = gsap.context(() => {
-      const cards =
-        cardRefs.current.filter(Boolean);
+      const cards = cardRefs.current.filter(Boolean);
 
-      /*
-       * Accessibility:
-       * Don't run entrance animations
-       * when reduced motion is enabled.
-       */
+      // Keep everything clearly visible by default
+      gsap.set('.services-header-anim', {
+        opacity: 1,
+        y: 0
+      });
+
+      gsap.set(cards, {
+        opacity: 1,
+        y: 0,
+        scale: 1
+      });
+
       if (reducedMotion) {
-        gsap.set('.services-header-anim', {
-          opacity: 1,
-          y: 0
-        });
-
-        gsap.set(cards, {
-          opacity: 1,
-          y: 0,
-          scale: 1
-        });
-
         return;
       }
 
-      // ----------------------------------
-      // Header Animation
-      // ----------------------------------
-
+      // Header animation
       gsap.fromTo(
         '.services-header-anim',
         {
-          y: 40,
+          y: 30,
           opacity: 0
         },
         {
           y: 0,
           opacity: 1,
-          duration: 0.9,
+          duration: 0.8,
           stagger: 0.12,
           ease: 'power3.out',
-
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 85%',
@@ -205,41 +175,29 @@ export const Services = ({ onSelectService }) => {
         }
       );
 
-      // ----------------------------------
-      // Service Cards Animation
-      // ----------------------------------
-
-      gsap.fromTo(
-        cards,
-        {
-          y: 60,
-          opacity: 0,
-          scale: 0.95
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out',
-
-          scrollTrigger: {
-            trigger:
-              cardsContainerRef.current,
-
-            start: 'top 90%',
-
-            once: true
+      // Cards: animate position and scale only
+      cards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            y: 35,
+            scale: 0.98
+          },
+          {
+            y: 0,
+            scale: 1,
+            duration: 0.65,
+            delay: index * 0.08,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cardsContainerRef.current,
+              start: 'top 92%',
+              once: true
+            }
           }
-        }
-      );
+        );
+      });
 
-      /*
-       * Recalculate ScrollTrigger positions
-       * after React completes layout.
-       */
       requestAnimationFrame(() => {
         ScrollTrigger.refresh();
       });
@@ -250,20 +208,12 @@ export const Services = ({ onSelectService }) => {
     };
   }, []);
 
-  // ======================================
-  // Request Proposal
-  // ======================================
-
-  const handleConsultService = (
-    serviceKey
-  ) => {
+  const handleConsultService = (serviceKey) => {
     if (onSelectService) {
       onSelectService(serviceKey);
     }
 
-    const contactEl =
-      document.getElementById('contact');
-
+    const contactEl = document.getElementById('contact');
     if (contactEl) {
       contactEl.scrollIntoView({
         behavior: 'smooth',
@@ -276,460 +226,126 @@ export const Services = ({ onSelectService }) => {
     <section
       id="services"
       ref={sectionRef}
-      className="
-        relative
-        py-28
-        px-4
-        sm:px-6
-        bg-black
-        overflow-hidden
-      "
+      className="relative py-28 px-4 sm:px-6 bg-black overflow-hidden"
     >
-      {/* ==================================
-          Background Glow
-      =================================== */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
 
-      <div
-        className="
-          absolute
-          top-1/2
-          left-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          w-[800px]
-          h-[500px]
-          bg-white/[0.02]
-          rounded-full
-          blur-[140px]
-          pointer-events-none
-        "
-      />
-
-      <div
-        className="
-          max-w-7xl
-          mx-auto
-          relative
-          z-10
-        "
-      >
-        {/* ==================================
-            Header
-        =================================== */}
-
-        <div
-          className="
-            flex
-            flex-col
-            md:flex-row
-            md:items-end
-            justify-between
-            mb-16
-            pb-6
-            border-b
-            border-white/10
-          "
-        >
-          <div
-            className="
-              services-header-anim
-              max-w-2xl
-            "
-          >
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-2
-                text-xs
-                font-mono
-                font-semibold
-                text-neutral-400
-                uppercase
-                tracking-wider
-                mb-3
-              "
-            >
-              <Zap
-                className="
-                  w-3.5
-                  h-3.5
-                  text-white
-                "
-              />
-
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10">
+          <div className="services-header-anim max-w-2xl">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-neutral-400 uppercase tracking-wider mb-3">
+              <Zap className="w-3.5 h-3.5 text-white" />
               Specialized Core Disciplines
             </div>
 
-            <h2
-              className="
-                text-3xl
-                sm:text-4xl
-                md:text-5xl
-                font-display
-                font-bold
-                text-white
-                tracking-tight
-              "
-            >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               High-Velocity Digital Craft
             </h2>
 
-            <p
-              className="
-                mt-3
-                text-neutral-400
-                text-sm
-                sm:text-base
-                leading-relaxed
-              "
-            >
-              Precision engineering
-              tailored for enterprise
-              disruption. We do not build
-              templates; every solution is
-              architected from clean
+            <p className="mt-3 text-neutral-400 text-sm sm:text-base leading-relaxed">
+              Precision engineering tailored for enterprise disruption. We do not
+              build templates; every solution is architected from clean
               fundamentals.
             </p>
           </div>
 
-          <div
-            className="
-              services-header-anim
-              mt-6
-              md:mt-0
-            "
-          >
-            <span
-              className="
-                font-mono
-                text-xs
-                text-neutral-400
-                bg-white/[0.03]
-                px-3.5
-                py-1.5
-                rounded-full
-                border
-                border-white/10
-              "
-            >
+          <div className="services-header-anim mt-6 md:mt-0">
+            <span className="font-mono text-xs text-neutral-400 bg-white/[0.03] px-3.5 py-1.5 rounded-full border border-white/10">
               Interactive 3D Motion Grid
             </span>
           </div>
         </div>
 
-        {/* ==================================
-            Services Grid
-        =================================== */}
-
         <div
           ref={cardsContainerRef}
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-3
-            gap-8
-          "
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
         >
-          {servicesData.map(
-            (srv, index) => {
-              const Icon = srv.icon;
+          {servicesData.map((srv, index) => {
+            const Icon = srv.icon;
 
-              return (
-                <div
-                  key={srv.id}
-                  ref={(el) => {
-                    cardRefs.current[index] =
-                      el;
-                  }}
-                  onMouseMove={(e) =>
-                    handleCardMouseMove(
-                      e,
-                      e.currentTarget
-                    )
-                  }
-                  onMouseLeave={(e) =>
-                    handleCardMouseLeave(
-                      e.currentTarget
-                    )
-                  }
-                  className="
-                    relative
-                    rounded-3xl
-                    p-8
-                    bg-[#0A0A0A]
-                    border
-                    border-white/10
-                    hover:border-white/40
-                    hover:shadow-[0_0_35px_rgba(255,255,255,0.12)]
-                    transition-[border-color,box-shadow]
-                    duration-300
-                    flex
-                    flex-col
-                    justify-between
-                    group
-                  "
-                  style={{
-                    transformStyle:
-                      'preserve-3d'
-                  }}
-                >
-                  {/* Hover Highlight */}
+            return (
+              <div
+                key={srv.id}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                onMouseMove={(e) =>
+                  handleCardMouseMove(e, e.currentTarget)
+                }
+                onMouseLeave={(e) =>
+                  handleCardMouseLeave(e.currentTarget)
+                }
+                className="relative rounded-3xl p-8 bg-[#0A0A0A] border border-white/10 hover:border-white/40 hover:shadow-[0_0_35px_rgba(255,255,255,0.12)] transition-[border-color,box-shadow] duration-300 flex flex-col justify-between group"
+                style={{
+                  transformStyle: 'preserve-3d'
+                }}
+              >
+                <div className="absolute top-0 left-8 right-8 h-px bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full shadow-[0_0_10px_white] pointer-events-none" />
 
-                  <div
-                    className="
-                      absolute
-                      top-0
-                      left-8
-                      right-8
-                      h-px
-                      bg-white
-                      opacity-0
-                      group-hover:opacity-100
-                      transition-opacity
-                      duration-500
-                      rounded-full
-                      shadow-[0_0_10px_white]
-                      pointer-events-none
-                    "
-                  />
-
-                  <div>
-                    {/* ======================
-                        Icon + Badge
-                    ======================= */}
-
-                    <div
-                      className="
-                        flex
-                        items-center
-                        justify-between
-                        mb-6
-                      "
-                    >
-                      <div
-                        className="
-                          w-14
-                          h-14
-                          rounded-2xl
-                          bg-white/[0.05]
-                          border
-                          border-white/15
-                          flex
-                          items-center
-                          justify-center
-                          group-hover:border-white
-                          transition-colors
-                        "
-                      >
-                        <Icon
-                          className="
-                            w-6
-                            h-6
-                            text-white
-                            group-hover:scale-110
-                            transition-transform
-                            duration-300
-                          "
-                        />
-                      </div>
-
-                      <span
-                        className="
-                          text-[10px]
-                          font-mono
-                          uppercase
-                          tracking-widest
-                          px-3
-                          py-1
-                          rounded-full
-                          bg-white/5
-                          border
-                          border-white/10
-                          text-neutral-300
-                        "
-                      >
-                        {srv.badge}
-                      </span>
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/15 flex items-center justify-center group-hover:border-white transition-colors">
+                      <Icon className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" />
                     </div>
 
-                    {/* ======================
-                        Title
-                    ======================= */}
-
-                    <div className="mb-4">
-                      <h3
-                        className="
-                          text-2xl
-                          font-display
-                          font-bold
-                          text-white
-                          mb-1
-                          group-hover:text-neutral-200
-                          transition-colors
-                        "
-                      >
-                        {srv.title}
-                      </h3>
-
-                      <p
-                        className="
-                          text-xs
-                          font-mono
-                          text-neutral-400
-                        "
-                      >
-                        {srv.subtitle}
-                      </p>
-                    </div>
-
-                    {/* ======================
-                        Description
-                    ======================= */}
-
-                    <p
-                      className="
-                        text-sm
-                        text-neutral-400
-                        mb-6
-                        leading-relaxed
-                      "
-                    >
-                      {srv.description}
-                    </p>
-
-                    {/* ======================
-                        Features
-                    ======================= */}
-
-                    <div
-                      className="
-                        space-y-2.5
-                        mb-8
-                      "
-                    >
-                      {srv.features.map(
-                        (feature) => (
-                          <div
-                            key={feature}
-                            className="
-                              flex
-                              items-start
-                              gap-2
-                              text-xs
-                              text-neutral-300
-                            "
-                          >
-                            <CheckCircle2
-                              className="
-                                w-4
-                                h-4
-                                text-white
-                                shrink-0
-                                mt-0.5
-                              "
-                            />
-
-                            <span>
-                              {feature}
-                            </span>
-                          </div>
-                        )
-                      )}
-                    </div>
+                    <span className="text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300">
+                      {srv.badge}
+                    </span>
                   </div>
 
-                  {/* ==================================
-                      Bottom
-                  =================================== */}
+                  <div className="mb-4">
+                    <h3 className="text-2xl font-display font-bold text-white mb-1 group-hover:text-neutral-200 transition-colors">
+                      {srv.title}
+                    </h3>
 
-                  <div>
-                    {/* Tech Stack */}
+                    <p className="text-xs font-mono text-neutral-400">
+                      {srv.subtitle}
+                    </p>
+                  </div>
 
-                    <div
-                      className="
-                        flex
-                        flex-wrap
-                        gap-1.5
-                        mb-6
-                        pt-4
-                        border-t
-                        border-white/5
-                      "
-                    >
-                      {srv.techStack.map(
-                        (tech) => (
-                          <span
-                            key={tech}
-                            className="
-                              text-[10px]
-                              font-mono
-                              px-2
-                              py-0.5
-                              rounded
-                              bg-white/[0.04]
-                              text-neutral-400
-                              border
-                              border-white/5
-                            "
-                          >
-                            {tech}
-                          </span>
-                        )
-                      )}
-                    </div>
+                  <p className="text-sm text-neutral-300 mb-6 leading-relaxed">
+                    {srv.description}
+                  </p>
 
-                    {/* CTA */}
-
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleConsultService(
-                          srv.serviceKey
-                        )
-                      }
-                      className="
-                        w-full
-                        py-3
-                        rounded-xl
-                        bg-white/[0.05]
-                        hover:bg-white
-                        text-white
-                        hover:text-black
-                        text-xs
-                        font-bold
-                        tracking-wider
-                        uppercase
-                        border
-                        border-white/15
-                        hover:border-white
-                        transition-all
-                        duration-300
-                        flex
-                        items-center
-                        justify-center
-                        gap-2
-                        group/btn
-                      "
-                    >
-                      <span>
-                        Request Proposal
-                      </span>
-
-                      <ArrowRight
-                        className="
-                          w-3.5
-                          h-3.5
-                          transition-transform
-                          group-hover/btn:translate-x-1
-                        "
-                      />
-                    </button>
+                  <div className="space-y-2.5 mb-8">
+                    {srv.features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-start gap-2 text-xs text-neutral-200"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              );
-            }
-          )}
+
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-6 pt-4 border-t border-white/10">
+                    {srv.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-neutral-300 border border-white/10"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleConsultService(srv.serviceKey)
+                    }
+                    className="w-full py-3 rounded-xl bg-white/[0.06] hover:bg-white text-white hover:text-black text-xs font-bold tracking-wider uppercase border border-white/15 hover:border-white transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+                  >
+                    <span>Request Proposal</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
