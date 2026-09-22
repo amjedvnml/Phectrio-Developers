@@ -1,7 +1,7 @@
 {
-  "name": "nexios-developers-root",
+  "name": "Phectrio-developers-root",
   "version": "1.0.0",
-  "description": "Nexios Developers - Full-Stack MERN Agency Web Application",
+  "description": "Phectrio Developers - Full-Stack MERN Agency Web Application",
   "private": true,
   "scripts": {
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",

@@ -1,7 +1,7 @@
 {
-  "name": "nexios-developers-server",
+  "name": "Phectrio-developers-server",
   "version": "1.0.0",
-  "description": "Backend API for Nexios Developers MERN Agency",
+  "description": "Backend API for Phectrio Developers MERN Agency",
   "main": "server.js",
   "type": "module",
   "scripts": {

@@ -126,8 +126,8 @@ export const ContactSection = ({ preselectedService }) => {
                 </div>
                 <div>
                   <div className="text-[10px] text-neutral-500 uppercase">Direct Executive Line</div>
-                  <a href="mailto:partner@nexios.dev" className="text-sm font-sans font-semibold text-white hover:text-neutral-300 transition-colors">
-                    partner@nexios.dev
+                  <a href="mailto:partner@Phectrio.dev" className="text-sm font-sans font-semibold text-white hover:text-neutral-300 transition-colors">
+                    partner@Phectrio.dev
                   </a>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export const ContactSection = ({ preselectedService }) => {
                   ) : (
                     <>
                       <Send className="w-4 h-4 text-black" />
-                      <span>Submit Inquiry to Nexios</span>
+                      <span>Submit Inquiry to Phectrio</span>
                     </>
                   )}
                 </button>

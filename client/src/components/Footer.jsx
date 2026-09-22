@@ -17,15 +17,15 @@ export const Footer = () => {
             <div className="flex items-center gap-3">
               <img
                 src="/assets/logo-mark-white.png"
-                alt="Nexios Mark"
+                alt="Phectrio Mark"
                 className="w-7 h-7 object-contain"
               />
               <span className="font-display font-bold text-xl tracking-tight text-white">
-                Nexios
+                Phectrio
               </span>
             </div>
             <p className="text-xs text-neutral-400 max-w-sm leading-relaxed">
-              Nexios Developers is an elite digital engineering and creative technology agency.
+              Phectrio Developers is an elite digital engineering and creative technology agency.
               We architect high-fidelity web platforms, mobile software, and spatial interfaces built for scale.
             </p>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-neutral-300">
@@ -75,7 +75,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 font-mono gap-4">
           <div>
-            &copy; {new Date().getFullYear()} Nexios Developers. Built For What's Next. All rights reserved.
+            &copy; {new Date().getFullYear()} Phectrio Developers. Built For What's Next. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <span className="hover:text-neutral-300 transition-colors cursor-pointer">Security Policy</span>

@@ -4,10 +4,10 @@ import { adminLogin as apiLogin, verifyAdminSession } from '../services/api';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(() => localStorage.getItem('nexios_admin_token') || null);
+  const [token, setToken] = useState(() => localStorage.getItem('Phectrio_admin_token') || null);
   const [user, setUser] = useState(() => {
     try {
-      const saved = localStorage.getItem('nexios_admin_user');
+      const saved = localStorage.getItem('Phectrio_admin_user');
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const existingToken = localStorage.getItem('nexios_admin_token');
+      const existingToken = localStorage.getItem('Phectrio_admin_token');
       if (existingToken) {
         try {
           const res = await verifyAdminSession();
@@ -26,8 +26,8 @@ export const AuthProvider = ({ children }) => {
           }
         } catch {
           // Token invalid
-          localStorage.removeItem('nexios_admin_token');
-          localStorage.removeItem('nexios_admin_user');
+          localStorage.removeItem('Phectrio_admin_token');
+          localStorage.removeItem('Phectrio_admin_user');
           setToken(null);
           setUser(null);
         }
@@ -41,8 +41,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     const data = await apiLogin(credentials);
     if (data.success && data.token) {
-      localStorage.setItem('nexios_admin_token', data.token);
-      localStorage.setItem('nexios_admin_user', JSON.stringify(data.user));
+      localStorage.setItem('Phectrio_admin_token', data.token);
+      localStorage.setItem('Phectrio_admin_user', JSON.stringify(data.user));
       setToken(data.token);
       setUser(data.user);
       return data;
@@ -51,8 +51,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('nexios_admin_token');
-    localStorage.removeItem('nexios_admin_user');
+    localStorage.removeItem('Phectrio_admin_token');
+    localStorage.removeItem('Phectrio_admin_user');
     setToken(null);
     setUser(null);
   };

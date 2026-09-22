@@ -259,7 +259,7 @@ export const InquiriesTable = ({ inquiries, onRefresh, loading }) => {
                 Received on {new Date(viewingMessageInquiry.createdAt).toLocaleString()}
               </span>
               <a
-                href={`mailto:${viewingMessageInquiry.email}?subject=Re:%20Nexios%20Developers%20Project%20Inquiry%20(${viewingMessageInquiry.service})`}
+                href={`mailto:${viewingMessageInquiry.email}?subject=Re:%20Phectrio%20Developers%20Project%20Inquiry%20(${viewingMessageInquiry.service})`}
                 className="px-4 py-2 rounded-xl bg-gradient-to-r from-electric-violet to-electric-cyan text-white text-xs font-semibold flex items-center gap-1.5 shadow-glow-subtle"
               >
                 <Mail className="w-3.5 h-3.5" />

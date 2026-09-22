@@ -38,12 +38,12 @@ export const Navbar = () => {
           <div className="relative w-7 h-7 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
             <img
               src="/assets/logo-mark-white.png"
-              alt="Nexios Logo Mark"
+              alt="Phectrio Logo Mark"
               className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
             />
           </div>
           <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-neutral-300 transition-colors">
-            Nexios
+            Phectrio
           </span>
         </a>
 

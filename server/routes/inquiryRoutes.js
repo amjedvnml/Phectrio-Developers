@@ -44,14 +44,14 @@ router.post('/', async (req, res) => {
 
     return res.status(201).json({
       success: true,
-      message: 'Inquiry received successfully. A Nexios partner will connect with you within 24 hours.',
+      message: 'Inquiry received successfully. A Phectrio partner will connect with you within 24 hours.',
       inquiry: newInquiry
     });
   } catch (err) {
     console.error('[InquiryRoutes] Creation error:', err);
     return res.status(500).json({
       success: false,
-      message: 'Failed to process inquiry submission. Please try again or reach out to partner@nexios.dev.'
+      message: 'Failed to process inquiry submission. Please try again or reach out to partner@Phectrio.dev.'
     });
   }
 });

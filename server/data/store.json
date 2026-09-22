@@ -2,8 +2,8 @@
   "admin": {
     "id": "admin_root_01",
     "_id": "admin_root_01",
-    "username": "nexiosadmin",
-    "email": "admin@nexios.dev",
+    "username": "Phectrioadmin",
+    "email": "admin@Phectrio.dev",
     "passwordHash": "$2a$10$WjhXnGgCKmHlhsyBz7kcGepS.Mvcp5AP8O7mpWQZyOakCITcP7T2K",
     "role": "superadmin",
     "createdAt": "2026-09-17T01:13:52.993Z"

@@ -82,7 +82,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
-    service: 'Nexios Developers API',
+    service: 'Phectrio Developers API',
 
     database: {
       mode: dbState.mode,
@@ -146,7 +146,7 @@ app.listen(PORT, () => {
   console.log('====================================================');
 
   console.log(
-    `>>> NEXIOS DEVELOPERS BACKEND RUNNING ON PORT ${PORT} <<<`
+    `>>> Phectrio DEVELOPERS BACKEND RUNNING ON PORT ${PORT} <<<`
   );
 
   console.log(

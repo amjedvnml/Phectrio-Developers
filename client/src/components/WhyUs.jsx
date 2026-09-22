@@ -42,7 +42,7 @@ export const WhyUs = () => {
             Built For What's Next. No Compromises.
           </h2>
           <p className="mt-4 text-neutral-400 text-sm sm:text-base leading-relaxed">
-            The difference between standard agencies and Nexios is our obsession with performance physics,
+            The difference between standard agencies and Phectrio is our obsession with performance physics,
             resilient architectures, and modern minimalist distinction.
           </p>
         </div>

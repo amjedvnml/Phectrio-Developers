@@ -36,7 +36,7 @@ export const AdminLogin = () => {
   };
 
   const handleFillDemo = () => {
-    setEmail('admin@nexios.dev');
+    setEmail('admin@Phectrio.dev');
     setPassword('Admin@123');
     setErrorMessage('');
   };
@@ -69,7 +69,7 @@ export const AdminLogin = () => {
             Executive Portal
           </h1>
           <p className="text-xs font-mono text-slate-400 mt-1">
-            Nexios Developers &bull; CRM & Pipeline Access
+            Phectrio Developers &bull; CRM & Pipeline Access
           </p>
         </div>
 
@@ -100,7 +100,7 @@ export const AdminLogin = () => {
                   type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@nexios.dev"
+                  placeholder="admin@Phectrio.dev"
                   required
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-electric-cyan transition-colors"
                 />
@@ -148,7 +148,7 @@ export const AdminLogin = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-cyan-300 transition-colors"
             >
               <Sparkles className="w-3.5 h-3.5 text-electric-cyan" />
-              <span>Auto-Fill Demo Credentials (admin@nexios.dev)</span>
+              <span>Auto-Fill Demo Credentials (admin@Phectrio.dev)</span>
             </button>
           </div>
         </div>

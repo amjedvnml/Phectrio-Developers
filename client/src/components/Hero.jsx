@@ -96,7 +96,7 @@ export const Hero = () => {
         >
           <img
             src="/assets/logo-mark-white.png"
-            alt="Nexios Icon"
+            alt="Phectrio Icon"
             className="w-3.5 h-3.5 object-contain"
           />
           <span className="font-mono text-xs font-semibold tracking-wider text-neutral-300 uppercase">
@@ -111,7 +111,7 @@ export const Hero = () => {
         {/* Dynamic Main Headline (Space Grotesk & Monochrome) */}
         <div ref={titleRef} className="space-y-3 mb-6">
           <h1 className="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white">
-            Nexios Developers
+            Phectrio Developers
           </h1>
           <div className="font-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight">
             <span className="gradient-text-hero glow-text-white">

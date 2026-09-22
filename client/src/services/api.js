@@ -12,7 +12,7 @@ const api = axios.create({
 // Attach JWT token if present
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('nexios_admin_token');
+    const token = localStorage.getItem('Phectrio_admin_token');
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -33,8 +33,8 @@ api.interceptors.response.use(
         window.location.pathname !== '/admin/login';
 
       if (isProtectedAdminRoute) {
-        localStorage.removeItem('nexios_admin_token');
-        localStorage.removeItem('nexios_admin_user');
+        localStorage.removeItem('Phectrio_admin_token');
+        localStorage.removeItem('Phectrio_admin_user');
 
         window.location.href = '/admin/login?expired=true';
       }

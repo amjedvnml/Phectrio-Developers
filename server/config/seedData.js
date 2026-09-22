@@ -16,11 +16,11 @@ export const getInitialSeedData = (bcrypt) => {
 
         username:
           process.env.ADMIN_USERNAME ||
-          "nexiosadmin",
+          "Phectrioadmin",
 
         email: (
           process.env.ADMIN_EMAIL ||
-          "admin@nexios.dev"
+          "admin@Phectrio.dev"
         ).toLowerCase(),
 
         passwordHash: bcrypt.hashSync(

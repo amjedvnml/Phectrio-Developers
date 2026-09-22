@@ -21,11 +21,11 @@ export const AdminNavbar = ({ dbMode, dbStatus }) => {
           <Link to="/admin/dashboard" className="flex items-center gap-2.5">
             <img
               src="/assets/logo-mark-white.png"
-              alt="Nexios Admin Mark"
+              alt="Phectrio Admin Mark"
               className="w-6 h-6 object-contain"
             />
             <span className="font-display font-bold text-base tracking-tight text-white">
-              Nexios <span className="text-neutral-400 font-mono text-xs uppercase">CRM</span>
+              Phectrio <span className="text-neutral-400 font-mono text-xs uppercase">CRM</span>
             </span>
           </Link>
 
@@ -58,7 +58,7 @@ export const AdminNavbar = ({ dbMode, dbStatus }) => {
           <div className="flex items-center gap-3">
             <div className="hidden sm:block text-right">
               <div className="text-xs font-mono text-white truncate max-w-[150px]">
-                {user?.email || 'admin@nexios.dev'}
+                {user?.email || 'admin@Phectrio.dev'}
               </div>
             </div>
 
